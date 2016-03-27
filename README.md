@@ -10,6 +10,9 @@ Setup
 # Install prerequisites.
 $ pip install -r requirements.txt
 
+# Initialize database.
+$ python -c 'from livechat import init_db; init_db()'
+
 # Run server.
 $ python livechat.py
 ```

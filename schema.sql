@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS livechat;
+
+CREATE TABLE livechat (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT NOT NULL
+);
