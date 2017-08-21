@@ -13,6 +13,13 @@
         domStream.insertBefore(createMessageDOM(msg), domStream.firstChild);
     }
 
+    function showAllMsgs(msgs) {
+        var i, domStreamNew;
+        for (i = 0; i < msgs.length; ++i) {
+            showMsg(msgs[i]);
+        }
+    }
+
     function sendMessage(msg) {
         socket.emit('send-msg', msg);
     }
@@ -28,7 +35,12 @@
 
     function initSocketIO() {
         socket = io.connect('//' + document.domain + ':' + location.port);
-        socket.on('show-msg', showMsg)
+        socket
+        .on('show-msg', showMsg)
+        .on('show-all-msgs', showAllMsgs)
+        .on('connect', function() {
+            socket.emit('request-all-msgs');
+        });
     }
 
     function onDOMContentLoaded(evt) {
